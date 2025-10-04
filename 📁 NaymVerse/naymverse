@@ -1,0 +1,19 @@
+NaymVerse/
+│
+├── index.html        ← Homepage
+├── ai.html           ← AI Chatbot / Paid Feature page
+├── css/
+│   └── style.css     ← সব styling
+├── js/
+│   └── script.js     ← Smooth scroll + Chatbot logic
+└── images/
+    ├── video1.jpg
+    ├── video2.jpg
+    ├── ai1.jpg
+    ├── ai2.jpg
+    ├── news1.jpg
+    ├── news2.jpg
+    ├── work1.jpg
+    ├── work2.jpg
+    ├── ads.jpg
+    └── affiliate.jpg
