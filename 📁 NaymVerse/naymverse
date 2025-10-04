@@ -1,5 +1,31 @@
 NaymVerse/
-├── home/
+├── home/<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NaymVerse - Home</title>
+</head>
+<body>
+  <h1>Welcome to NaymVerse 🌍</h1>
+
+  <!-- Navigation Menu -->
+  <nav>
+    <ul>
+      <li><a href="../youtube/index.html">YouTube</a></li>
+      <li><a href="../facebook/index.html">Facebook</a></li>
+      <li><a href="../instagram/index.html">Instagram</a></li>
+      <li><a href="../tiktok/index.html">TikTok</a></li>
+      <li><a href="../ai-tools/ai.html">AI Tools</a></li>
+      <li><a href="../work/project1.html">Work</a></li>
+      <li><a href="../ads/index.html">Ads</a></li>
+      <li><a href="../payments/nagad.html">Payments</a></li>
+      <li><a href="../freelancing/upwork.html">Freelancing</a></li>
+      <li><a href="../about/about.html">About</a></li>
+    </ul>
+  </nav>
+
+</body>
+</html>
 │   ├── index.html        ← হোমপেজ
 │   ├── style.css         ← হোমপেজের CSS (যদি আলাদা চান)
 │   └── script.js         ← হোমপেজের JS
