@@ -1,19 +1,51 @@
 NaymVerse/
-│
-├── index.html        ← Homepage
-├── ai.html           ← AI Chatbot / Paid Feature page
-├── css/
-│   └── style.css     ← সব styling
-├── js/
-│   └── script.js     ← Smooth scroll + Chatbot logic
-└── images/
-    ├── video1.jpg
-    ├── video2.jpg
-    ├── ai1.jpg
-    ├── ai2.jpg
-    ├── news1.jpg
-    ├── news2.jpg
-    ├── work1.jpg
-    ├── work2.jpg
-    ├── ads.jpg
-    └── affiliate.jpg
+├── home/
+│   ├── index.html        ← হোমপেজ
+│   ├── style.css         ← হোমপেজের CSS (যদি আলাদা চান)
+│   └── script.js         ← হোমপেজের JS
+├── ai-tools/
+│   ├── ai.html           ← AI Tools পেজ
+│   ├── style.css         ← AI Tools CSS
+│   └── script.js         ← AI Tools JS
+├── about/
+│   └── about.html        ← About পেজ
+├── youtube/
+│   ├── video1.html       ← ভিডিও 1
+│   ├── video2.html       ← ভিডিও 2
+│   └── assets/
+│       └── images/
+│           ├── video1.jpg
+│           └── video2.jpg
+├── facebook/
+│   └── index.html        ← Facebook টুলস / লিঙ্ক / পোস্ট
+├── instagram/
+│   └── index.html
+├── tiktok/
+│   └── index.html
+├── work/
+│   ├── project1.html
+│   ├── project2.html
+│   └── assets/
+│       └── images/
+│           ├── work1.jpg
+│           └── work2.jpg
+├── ads/
+│   └── index.html        ← Sponsor / Ads পেজ
+├── payments/
+│   ├── nagad.html
+│   ├── bkash.html
+│   └── card.html
+├── freelancing/
+│   ├── upwork.html
+│   ├── fiverr.html
+│   └── tips.html
+└── shared-assets/
+    ├── css/              ← যদি কিছু CSS সব পেজে ব্যবহার হয়
+    ├── js/               ← যদি কিছু JS সব পেজে ব্যবহার হয়
+    └── images/           ← যেকোনো shared ছবি
+        ├── ai1.jpg
+        ├── ai2.jpg
+        ├── news1.jpg
+        ├── news2.jpg
+        ├── ads.jpg
+        └── affiliate.jpg
