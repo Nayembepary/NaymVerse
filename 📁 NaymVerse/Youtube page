@@ -1,0 +1,24 @@
+video1.html
+video2.html
+assets/images/video1.jpg, video2.jpg
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video 1 - YouTube</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>YouTube Video 1</h1>
+  </header>
+
+  <main>
+    <video src="assets/video1.mp4" controls width="600"></video>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">Back to Home 🏠</a>
+  </footer>
+</body>
+</html>
