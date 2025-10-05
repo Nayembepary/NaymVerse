@@ -1,0 +1,30 @@
+faq.html
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Frequently Asked Questions (FAQ)</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Frequently Asked Questions (FAQ) ❓</h1>
+  </header>
+
+  <main>
+    <h2>General Questions</h2>
+    
+    <h4>Q: How can I contact you?</h4>
+    <p>A: You can use the form on our <a href="contact.html">Contact Us</a> page.</p>
+    
+    <h2>Payment Questions</h2>
+    
+    <h4>Q: What payment methods do you accept?</h4>
+    <p>A: We accept Nagad, Bkash, and all major credit cards. See details on the <a href="nagad.html">Nagad Payments</a> page.</p>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">Back to Home 🏠</a>
+  </footer>
+</body>
+</html>
