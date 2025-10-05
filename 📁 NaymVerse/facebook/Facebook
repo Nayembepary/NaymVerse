@@ -1,1 +1,22 @@
 index.html<a href="../home/index.html">Back to Home 🏠</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Facebook Tools</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Facebook Tools / Links</h1>
+  </header>
+
+  <main>
+    <p>Links to posts, pages, and analytics.</p>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">Back to Home 🏠</a>
+  </footer>
+</body>
+</html>
