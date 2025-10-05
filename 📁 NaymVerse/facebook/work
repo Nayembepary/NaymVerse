@@ -1,2 +1,24 @@
 project1.html
 project1.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project 1</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Project 1</h1>
+  </header>
+
+  <main>
+    <img src="assets/images/work1.jpg" alt="Project 1" width="600">
+    <p>Description of Project 1.</p>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">Back to Home 🏠</a>
+  </footer>
+</body>
+</html>
