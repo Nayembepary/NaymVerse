@@ -1,0 +1,32 @@
+pricing.html
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Services & Pricing</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Our Pricing Plans 💰</h1>
+  </header>
+
+  <main>
+    <h2>Basic Plan</h2>
+    <p>Details: Full access to all our basic content and guides.</p>
+    <p>Price: $10/month</p>
+    <a href="signup.html">Sign Up for Basic</a>
+    
+    <hr>
+    
+    <h2>Premium Plan (Most Popular!)</h2>
+    <p>Details: Everything in Basic, plus personal consultation and exclusive content.</p>
+    <p>Price: $50/month</p>
+    <a href="signup.html">Go Premium Today</a>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">Back to Home 🏠</a>
+  </footer>
+</body>
+</html>
