@@ -1,6 +1,93 @@
 upwork.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upwork Guide</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>💼 Upwork Freelancing</h1>
+  </header>
+
+  <main>
+    <p>এখানে তুমি Upwork-এ কাজ শুরু করার জন্য টিপস পাবে।</p>
+    <ul>
+      <li>👉 প্রোফাইল সম্পূর্ণ করো (100%)</li>
+      <li>👉 প্রফেশনাল প্রোফাইল ছবি ব্যবহার করো</li>
+      <li>👉 প্রপোজাল লেখায় সঠিক ক্লায়েন্টকে টার্গেট করো</li>
+      <li>👉 ছোট কাজ দিয়ে শুরু করো, রিভিউ জমাও</li>
+    </ul>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">🏠 Back to Home</a> |
+    <a href="fiverr.html">Go to Fiverr</a> |
+    <a href="tips.html">Freelancing Tips</a>
+  </footer>
+</body>
+</html>
   fiverr.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fiverr Guide</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>🎨 Fiverr Freelancing</h1>
+  </header>
+
+  <main>
+    <p>Fiverr-এ সফল হওয়ার জন্য কিছু টিপস:</p>
+    <ul>
+      <li>👉 ইউনিক গিগ টাইটেল দাও</li>
+      <li>👉 আকর্ষণীয় গিগ ইমেজ বানাও</li>
+      <li>👉 কীওয়ার্ড রিসার্চ করে গিগ বানাও</li>
+      <li>👉 মেসেজ রিপ্লাই টাইম কম রাখো</li>
+    </ul>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">🏠 Back to Home</a> |
+    <a href="upwork.html">Go to Upwork</a> |
+    <a href="tips.html">Freelancing Tips</a>
+  </footer>
+</body>
+</html>
   tips.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Freelancing Tips</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>✨ Freelancing Success Tips</h1>
+  </header>
+
+  <main>
+    <p>সব ধরনের ফ্রিল্যান্সিং প্ল্যাটফর্মে কাজে লাগবে এমন কিছু টিপস:</p>
+    <ul>
+      <li>👉 সময়মত কাজ ডেলিভার করো</li>
+      <li>👉 ক্লায়েন্টের সাথে ভদ্র ব্যবহার করো</li>
+      <li>👉 স্কিল শিখে নিয়মিত আপডেটেড থাকো</li>
+      <li>👉 প্রফেশনাল পোর্টফোলিও রাখো</li>
+    </ul>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">🏠 Back to Home</a> |
+    <a href="upwork.html">Go to Upwork</a> |
+    <a href="fiverr.html">Go to Fiverr</a>
+  </footer>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
