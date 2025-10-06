@@ -1,1 +1,74 @@
 index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Tools - NaymVerse</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header class="tiktok">
+    <h1>🎵 TikTok Tools</h1>
+  </header>
+
+  <div class="container">
+    <p>এখানে তুমি TikTok সম্পর্কিত টুলস, লিঙ্ক এবং ট্রিকস পাবে।</p>
+
+    <a href="https://www.tiktok.com" class="btn tiktok" target="_blank">Visit TikTok</a>
+    <a href="../home/index.html" class="btn">🏠 Back to Home</a>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 NaymVerse</p>
+  </footer>
+</body>
+</html>
+shared-assets/css/style.css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    padding: 15px;
+    color: white;
+}
+
+header.instagram { background: #e1306c; }
+header.facebook { background: #1877f2; }
+header.tiktok    { background: #010101; }
+
+.container {
+    margin: 30px auto;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+a.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+a.btn.instagram { background: #e1306c; }
+a.btn.instagram:hover { background: #c12759; }
+
+a.btn.facebook { background: #1877f2; }
+a.btn.facebook:hover { background: #145dbf; }
+
+a.btn.tiktok { background: #010101; }
+a.btn.tiktok:hover { background: #333; }
+
+footer { margin-top: 20px; }
