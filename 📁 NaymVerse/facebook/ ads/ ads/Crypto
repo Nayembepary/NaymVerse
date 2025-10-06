@@ -1,0 +1,74 @@
+crypto.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crypto Payments</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+  <style>
+    .wallet-box {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    .wallet-box h3 {
+      margin: 0 0 10px;
+    }
+    .wallet-address {
+      font-family: monospace;
+      background: #eee;
+      padding: 5px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    .qr-code {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>💰 Pay with Crypto</h1>
+  </header>
+
+  <main>
+    <p>আপনি আমাদের ক্রিপ্টো ওয়ালেটের মাধ্যমে লেনদেন করতে পারবেন।</p>
+
+    <!-- Bitcoin -->
+    <div class="wallet-box">
+      <h3>₿ Bitcoin (BTC)</h3>
+      <p class="wallet-address">bc1qeql3xe6l7ft69gmshydxae4thc42ellj5j2ln9</p>
+      <div class="qr-code">
+        <img src="../shared-assets/images/btc-qr.png" alt="BTC QR Code" width="150">
+      </div>
+    </div>
+
+    <!-- Ethereum -->
+    <div class="wallet-box">
+      <h3>Ξ Ethereum (ETH)</h3>
+      <p class="wallet-address">0x522911f571BBBf17B86f72bDa29c799dB3372F4C</p>
+      <div class="qr-code">
+        <img src="../shared-assets/images/eth-qr.png" alt="ETH QR Code" width="150">
+      </div>
+    </div>
+
+    <!-- USDT -->
+    <div class="wallet-box">
+      <h3>💲 Tether (USDT - TRC20)</h3>
+      <p class="wallet-address">0x522911f571BBBf17B86f72bDa29c799dB3372F4C</p>
+      <div class="qr-code">
+        <img src="../shared-assets/images/usdt-qr.png" alt="USDT QR Code" width="150">
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">🏠 Back to Home</a> |
+    <a href="nagad.html">Nagad</a> |
+    <a href="bkash.html">Bkash</a> |
+    <a href="card.html">Card</a>
+  </footer>
+</body>
+</html>
