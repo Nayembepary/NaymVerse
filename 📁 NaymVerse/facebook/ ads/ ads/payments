@@ -1,6 +1,94 @@
 nagad.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nagad Payments</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>📲 Pay with Nagad</h1>
+  </header>
+
+  <main>
+    <p>নিচের ধাপগুলো অনুসরণ করে Nagad পেমেন্ট করুন:</p>
+    <ol>
+      <li>*167# ডায়াল করুন অথবা Nagad অ্যাপ চালু করুন</li>
+      <li>Send Money/Payment অপশন নির্বাচন করুন</li>
+      <li>মার্চেন্ট নম্বর/Wallet ID লিখুন</li>
+      <li>টাকা পরিমাণ লিখুন</li>
+      <li>PIN দিয়ে কনফার্ম করুন ✅</li>
+    </ol>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">🏠 Back to Home</a> |
+    <a href="bkash.html">Bkash</a> |
+    <a href="card.html">Card</a>
+  </footer>
+</body>
+</html>
 bkash.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bkash Payments</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>📲 Pay with Bkash</h1>
+  </header>
+
+  <main>
+    <p>নিচের ধাপগুলো অনুসরণ করে Bkash পেমেন্ট করুন:</p>
+    <ol>
+      <li>*247# ডায়াল করুন অথবা Bkash অ্যাপ চালু করুন</li>
+      <li>Payment অপশন নির্বাচন করুন</li>
+      <li>মার্চেন্ট নম্বর/Wallet ID লিখুন</li>
+      <li>টাকা পরিমাণ লিখুন</li>
+      <li>PIN দিয়ে কনফার্ম করুন ✅</li>
+    </ol>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">🏠 Back to Home</a> |
+    <a href="nagad.html">Nagad</a> |
+    <a href="card.html">Card</a>
+  </footer>
+</body>
+</html>
 card.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Card Payments</title>
+  <link rel="stylesheet" href="../shared-assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>💳 Pay with Debit / Credit Card</h1>
+  </header>
+
+  <main>
+    <p>ডেবিট/ক্রেডিট কার্ড দিয়ে পেমেন্ট করতে:</p>
+    <ol>
+      <li>Card Number লিখুন</li>
+      <li>Expiry Date & CVV দিন</li>
+      <li>One Time Password (OTP) দিয়ে কনফার্ম করুন ✅</li>
+    </ol>
+  </main>
+
+  <footer>
+    <a href="../home/index.html">🏠 Back to Home</a> |
+    <a href="nagad.html">Nagad</a> |
+    <a href="bkash.html">Bkash</a>
+  </footer>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
