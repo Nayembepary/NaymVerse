@@ -1,580 +1,429 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Powered - Naym's Website</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NaymVerse — Dashboard</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f8ff;
-      color: #333;
-      margin: 0;
-      padding: 0;
+    /* Base */
+    :root{
+      --bg:#f4f6f8;
+      --card:#ffffff;
+      --text:#222;
+      --muted:#666;
+      --accent:#111;
+      --accent-2:#007bff;
+      --success:#28a745;
+      --radius:12px;
+      --maxwidth:1100px; /* desktop max width */
     }
-    header {
-      background-color: #0d6efd;
-      color: white;
-      padding: 20px;
-      text-align: center;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, "Poppins", system-ui, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      transition:background .25s,color .25s;
     }
-    section {
-      padding: 30px;
-      text-align: center;
+    body.dark{
+      --bg:#0f1113;
+      --card:#151718;
+      --text:#e9eef2;
+      --muted:#aab0b6;
+      --accent:#fff;
+      --accent-2:#3ea0ff;
     }
-    .bot {
-      margin-top: 20px;
-      padding: 15px;
-      background-color: #e9ecef;
-      border-radius: 10px;
+
+    /* Layout */
+    .app {
+      display:flex;
+      min-height:100vh;
+      align-items:flex-start;
+      justify-content:center; /* center the content area on large screens */
+      padding:28px;
     }
-    footer {
-      background: #333;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+
+    /* Sidebar (fixed left for desktop) */
+    .sidebar {
+      position:fixed;
+      left:28px;
+      top:28px;
+      width:240px;
+      height:calc(100vh - 56px);
+      background:var(--card);
+      border-radius:12px;
+      box-shadow:0 8px 30px rgba(17,17,17,0.08);
+      overflow:auto;
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
+    .logo{
+      font-weight:700;
+      color:var(--accent);
+      font-size:18px;
+      padding-bottom:6px;
+    }
+    .menu a{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:8px;
+      color:var(--text);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+    }
+    .menu a:hover{background:rgba(0,0,0,0.04)}
+    .menu a.active{background:rgba(0,0,0,0.06);}
+
+    /* Main container */
+    .main {
+      width:100%;
+      max-width:var(--maxwidth);
+      margin-left:312px; /* leave space for fixed sidebar + gap */
+      padding:12px 36px;
+    }
+
+    /* Top controls (menu button & dark toggle for small screens) */
+    .topbar {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:18px;
+      gap:12px;
+    }
+    .title h1{margin:0;font-size:20px}
+    .controls{display:flex;gap:10px;align-items:center}
+    .btn{
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+    }
+    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(0,0,0,0.06)}
+
+    /* Card / section */
+    .card{
+      background:var(--card);
+      padding:20px;
+      border-radius:var(--radius);
+      box-shadow:0 6px 18px rgba(17,17,17,0.06);
+      margin-bottom:18px;
+    }
+    .row{display:flex;gap:18px;flex-wrap:wrap}
+    .col{flex:1;min-width:260px}
+
+    /* Rating stars */
+    .stars{font-size:28px;color:#ccc;cursor:pointer;user-select:none}
+    .stars .active{color:#f1c40f}
+
+    /* Reviews list */
+    .reviews{margin-top:12px}
+    .review{background:rgba(0,0,0,0.03);padding:12px;border-radius:8px;margin-bottom:10px}
+
+    /* Image preview */
+    .img-preview{display:flex;gap:10px;flex-wrap:wrap}
+    .img-preview img{width:150px;height:100px;object-fit:cover;border-radius:8px}
+
+    /* Ads banner */
+    .ads-banner{background:var(--accent-2);color:#fff;padding:14px;border-radius:10px;text-align:center;font-weight:700;cursor:pointer}
+
+    /* Payment demo box */
+    .note{color:var(--muted);font-size:14px}
+
+    /* Footer inside main */
+    .footer{color:var(--muted);font-size:13px;text-align:center;margin-top:22px}
+
+    /* Responsive rules */
+    @media (max-width:1180px){
+      .main{margin-left:280px;padding:18px}
+      .sidebar{left:18px}
+    }
+    @media (max-width:980px){
+      .sidebar{position:relative;left:0;top:0;width:100%;height:auto;display:flex;flex-direction:row;padding:10px;gap:8px;overflow:auto}
+      .logo{display:none}
+      .main{margin-left:0;padding:16px}
+    }
+    @media (max-width:640px){
+      .row{flex-direction:column}
+      .img-preview img{width:120px;height:80px}
+      .stars{font-size:22px}
+    }
+
+    /* Small helper */
+    pre{background:rgba(0,0,0,0.03);padding:10px;border-radius:8px;overflow:auto}
+    a.link{color:var(--accent-2);text-decoration:none;font-weight:600}
   </style>
 </head>
 <body>
-  <header>
-    <h1>🤖 Welcome to Naym's AI-Powered Website</h1>
-    <p>Automatically optimized, managed, and monetized</p>
-  </header>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">NaymVerse</div>
+      <nav class="menu" id="menu">
+        <a href="#home" data-id="home" class="active">🏠 Home</a>
+        <a href="#about" data-id="about">ℹ️ About</a>
+        <a href="#income" data-id="income">💰 Income</a>
+        <a href="#ads" data-id="ads">📢 Ads</a>
+        <a href="#video" data-id="video">🎬 Video Downloader</a>
+        <a href="#image" data-id="image">🖼️ Images</a>
+        <a href="#rating" data-id="rating">⭐ Rating</a>
+        <a href="#apps" data-id="apps">📱 Apps</a>
+        <a href="#payment" data-id="payment">💳 Payment</a>
+      </nav>
+    </aside>
 
-  <section>
-    <h2>💡 What this website does</h2>
-    <ul style="text-align: left; display: inline-block;">
-      <li>✅ Self-managing AI content sections</li>
-      <li>💰 Monetization-ready layout</li>
-      <li>📊 Auto-update content coming soon</li>
-      <li>🧠 Future GPT Integration supported</li>
-    </ul>
+    <!-- Main content -->
+    <main class="main">
+      <div class="topbar">
+        <div class="title">
+          <h1>NaymVerse Dashboard</h1>
+          <div class="note">Beautiful, responsive layout — desktop-friendly</div>
+        </div>
 
-    <div class="bot">
-      <h3>🤔 Want to add AI Chatbot?</h3>
-      <p>Use tools like OpenAI, Dialogflow, or Chatbase to embed chatbot.</p>
-      <p><a href="https://platform.openai.com/" target="_blank">Click here to get OpenAI API</a></p>
-    </div>
-  </section>
+        <div class="controls">
+          <button class="btn ghost" id="toggleDark">🌙 Dark</button>
+          <button class="btn" id="openMenuMobile" style="display:none">☰ Menu</button>
+        </div>
+      </div>
 
-  <footer>
-    © 2025 Naym. AI Powered Website | Built with ❤️
-  </footer>
-</body>
-</html>
-<script>
-(function(){
-  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-    window.chatbase=(...arguments)=>{
-      if(!window.chatbase.q){window.chatbase.q=[]}
-      window.chatbase.q.push(arguments)
-    };
-    window.chatbase=new Proxy(window.chatbase,{
-      get(target, prop){
-        if(prop === "q"){return target.q}
-        return (...args)=>target(prop, ...args)
+      <!-- Sections -->
+      <section id="home" class="card active">
+        <h2>Welcome</h2>
+        <p class="note">এই পেজটি ডেস্কটপে ভালো দেখাতে রিফাইন করা হয়েছে — sidebar স্থায়ী, কনটেন্ট সেন্টারড, এবং মোবাইল-রেসপন্সিভ।</p>
+      </section>
+
+      <section id="about" class="card" style="display:none">
+        <h2>About NaymVerse</h2>
+        <p>NaymVerse — তোমার ক্রিয়েটিভ ডিজিটাল স্পেস। এই ড্যাশবোর্ডে তুমি রেটিং, ইনকাম, অ্যাপ, ইমেজ আপলোড ইত্যাদি দেখতে পারবে।</p>
+      </section>
+
+      <section id="income" class="card" style="display:none">
+        <h2>💰 Income</h2>
+        <div class="row">
+          <div class="col">
+            <div class="card" style="box-shadow:none;padding:14px">
+              <div style="font-size:18px;font-weight:700">আজকের আয়: ৳ <span id="incomeAmount">0</span></div>
+              <div style="margin-top:10px" class="note">(লোকাল সিমুলেশন — বাস্তব পেমেন্টের জন্য সার্ভার ও payment gateway লাগবে)</div>
+              <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+                <button class="btn" onclick="addIncome(10)">Watch Ad +৳10</button>
+                <button class="btn" onclick="addIncome(50)">Upload File +৳50</button>
+                <button class="btn" onclick="addIncome(100)">Download Video +৳100</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card" style="box-shadow:none;padding:14px">
+              <h4>Income Log</h4>
+              <div id="incomeLog" class="note" style="max-height:140px;overflow:auto"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ads" class="card" style="display:none">
+        <h2>📢 Ads</h2>
+        <div class="ads-banner" onclick="addIncome(20)">Click Ad — Earn ৳20</div>
+        <p class="note" style="margin-top:12px">বিঃদ্রঃ এইটা লোকাল ডেমো। বাস্তবে Ad network যোগ করতে Google AdSense বা অন্য network ব্যবহার করতে হবে।</p>
+      </section>
+
+      <section id="video" class="card" style="display:none">
+        <h2>🎬 Video Downloader (Demo)</h2>
+        <input id="videoLink" placeholder="ভিডিও লিংক তোমার এখানে পেস্ট করো" />
+        <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+          <button onclick="alert('Demo — বাস্তবে API লাগবে')">Download</button>
+          <button onclick="addIncome(100)">Simulate Download (+৳100)</button>
+        </div>
+        <p class="note" style="margin-top:10px">ভিডিও ডাউনলোড (যেমন YouTube) করার জন্য প্রথমে আইন ও Service Terms দেখে নাও — পরে API বা সার্ভার-সাইড সমাধান লাগবে।</p>
+      </section>
+
+      <section id="image" class="card" style="display:none">
+        <h2>🖼️ Images</h2>
+        <input id="imgInput" type="file" accept="image/*" multiple />
+        <div class="img-preview" id="imgPreview" style="margin-top:12px"></div>
+        <p class="note" style="margin-top:10px">তুমি এখানে লোকালি ইমেজ আপলোড করে প্রিভিউ দেখতে পারবে — সার্ভারে ওয়্যারহাউজ করতে হলে backend দরকার।</p>
+      </section>
+
+      <section id="rating" class="card" style="display:none">
+        <h2>⭐ Google Rating</h2>
+        <div class="stars" id="starContainer">
+          <span data-value="1">★</span>
+          <span data-value="2">★</span>
+          <span data-value="3">★</span>
+          <span data-value="4">★</span>
+          <span data-value="5">★</span>
+        </div>
+
+        <div style="margin-top:12px">
+          <textarea id="reviewText" placeholder="Write your review..." style="width:100%;min-height:80px;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)"></textarea>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <button onclick="submitReview()">Submit Review</button>
+            <button class="btn ghost" onclick="clearReviews()">Clear Reviews</button>
+          </div>
+        </div>
+
+        <div class="reviews" id="reviewsList" style="margin-top:12px"></div>
+      </section>
+
+      <section id="apps" class="card" style="display:none">
+        <h2>📱 Apps</h2>
+        <div class="row">
+          <div class="col app-card" style="background:transparent;padding:0">
+            <div style="padding:12px;background:rgba(0,0,0,0.03);border-radius:8px">
+              <h3 style="margin:0">Naym Tools</h3>
+              <p class="note">Android app for tools & utilities.</p>
+              <div style="margin-top:10px;display:flex;gap:8px">
+                <a class="link" href="https://nayembepary.github.io/NaymVerse/app.apk" target="_blank">Download APK</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="payment" class="card" style="display:none">
+        <h2>💳 Payment (Demo)</h2>
+        <p class="note">এই demo-তে রিয়েল পেমেন্ট নেই। বাস্তবে যোগ করতে সার্ভার + Payment gateway (Bkash/Nagad/Stripe) লাগবে।</p>
+        <pre>POST /pay { "amount": 500, "method":"bkash", "user":"naym001" }</pre>
+        <button onclick="alert('Demo only — no payment processed')">Pay ৳500 (Demo)</button>
+      </section>
+
+      <div class="footer card">
+        © <span id="year"></span> NaymVerse — Desktop view fixed. Replace this file on GitHub Pages and refresh.
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // basic navigation logic
+    const menuLinks = document.querySelectorAll('#menu a');
+    const sections = document.querySelectorAll('main section');
+    menuLinks.forEach(link=>{
+      link.addEventListener('click', e=>{
+        e.preventDefault();
+        menuLinks.forEach(l=>l.classList.remove('active'));
+        link.classList.add('active');
+        const id = link.dataset.id;
+        sections.forEach(s=>{
+          if(s.id===id){ s.style.display='block' } else { s.style.display='none' }
+        });
+        // scroll to top of main
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+    });
+
+    // dark mode toggle
+    const btnDark = document.getElementById('toggleDark');
+    btnDark.addEventListener('click', ()=>{
+      document.body.classList.toggle('dark');
+      btnDark.textContent = document.body.classList.contains('dark') ? '☀️ Light' : '🌙 Dark';
+    });
+
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // income simulation
+    let income = 0;
+    const incomeAmount = document.getElementById('incomeAmount');
+    const incomeLog = document.getElementById('incomeLog');
+    function addIncome(x){
+      income += x;
+      incomeAmount.textContent = income;
+      const time = new Date().toLocaleString();
+      const line = document.createElement('div');
+      line.textContent = `${time} — +৳${x}`;
+      incomeLog.prepend(line);
+    }
+    window.addIncome = addIncome;
+
+    // image preview
+    const imgInput = document.getElementById('imgInput');
+    const imgPreview = document.getElementById('imgPreview');
+    if(imgInput){
+      imgInput.addEventListener('change', (e)=>{
+        imgPreview.innerHTML = '';
+        const files = Array.from(e.target.files).slice(0,12);
+        files.forEach(f=>{
+          const url = URL.createObjectURL(f);
+          const img = document.createElement('img');
+          img.src = url;
+          img.loading = 'lazy';
+          imgPreview.appendChild(img);
+        });
+      });
+    }
+
+    // rating & reviews
+    const starContainer = document.getElementById('starContainer');
+    const stars = starContainer ? starContainer.querySelectorAll('span') : [];
+    let selectedRating = 0;
+    stars.forEach((s,i)=>{
+      s.addEventListener('click', ()=>{
+        selectedRating = i+1;
+        stars.forEach((ss,j)=> ss.classList.toggle('active', j < selectedRating));
+      });
+    });
+
+    function submitReview(){
+      const txt = document.getElementById('reviewText').value.trim();
+      if(selectedRating===0 || !txt){ alert('Please choose star & write review'); return; }
+      const container = document.getElementById('reviewsList');
+      const div = document.createElement('div');
+      div.className = 'review';
+      div.innerHTML = `<strong>Guest</strong> — ${'★'.repeat(selectedRating)}<br>${txt}`;
+      container.prepend(div);
+      document.getElementById('reviewText').value = '';
+      stars.forEach(s=>s.classList.remove('active')); selectedRating = 0;
+    }
+    window.submitReview = submitReview;
+    function clearReviews(){ document.getElementById('reviewsList').innerHTML=''; }
+    window.clearReviews = clearReviews;
+
+    // small-screen menu button (show/hide sidebar)
+    const openMenuMobile = document.getElementById('openMenuMobile');
+    const sidebar = document.getElementById('sidebar');
+    // show mobile menu btn only on small widths
+    function checkMobile(){
+      if(window.innerWidth < 980){
+        openMenuMobile.style.display = 'inline-block';
+        openMenuMobile.onclick = ()=> sidebar.classList.toggle('open-mobile');
+      } else {
+        openMenuMobile.style.display = 'none';
+        sidebar.classList.remove('open-mobile');
       }
-    })
-  }
-  const onLoad=function(){
-    const script=document.createElement("script");
-    script.src="https://www.chatbase.co/embed.min.js";
-    script.id="iPt_PqDsGUfarzaytKquv";
-    script.domain="www.chatbase.co";
-    document.body.appendChild(script)
-  };
-  if(document.readyState === "complete"){
-    onLoad()
-  }else{
-    window.addEventListener("load", onLoad)
-  }
-})();
-</script>
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-  <meta charset="UTF-8" />
-  <title>আমার ওয়েবসাইট</title>
-</head>
-<body>
+    }
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
-  <!-- এখানে তোমার লেখা, ছবি, বাটন বসাবে -->
-  <h1>স্বাগতম আমার ওয়েবসাইটে!</h1>
-  <p>এখানে তোমার বিভিন্ন তথ্য থাকবে।</p>
-
-  <img src="images/photo.jpg" alt="ছবি" width="300">
-
-  <button onclick="alert('ক্লিক করা হয়েছে!')">এখানে ক্লিক করো</button>
-
-  <!-- চ্যাটবট স্ক্রিপ্ট এখানে বসাবে, body শেষ হওয়ার আগে -->
-  <script src="https://www.chatbase.co/embed.min.js" chatbotId="YOUR_CHATBOT_ID" domain="yourdomain.com" defer></script>
-
-</body>
-</html>
-<section style="font-family: Arial, sans-serif; padding: 20px;">
-  <h2>🎬 Explore My Social Media & Content</h2>
-
-  <!-- বাটন সেকশন -->
-  <div style="margin-bottom: 20px;">
-    <a href="https://youtube.com/@naymverse" target="_blank" style="background:#FF0000; color:white; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none;">📺 YouTube</a>
-    <a href="https://facebook.com/yourpage" target="_blank" style="background:#1877F2; color:white; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none;">📘 Facebook</a>
-    <a href="https://tiktok.com/@yourusername" target="_blank" style="background:#000000; color:white; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none;">🎵 TikTok</a>
-    <a href="https://instagram.com/yourusername" target="_blank" style="background:#C13584; color:white; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none;">📸 Instagram</a>
-    <a href="https://twitter.com/yourusername" target="_blank" style="background:#1DA1F2; color:white; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none;">🐦 Twitter</a>
-    <a href="your-game-link.html" target="_blank" style="background:#6f42c1; color:white; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none;">🎮 Play Game</a>
-  </div>
-
-  <!-- ভিডিও প্লেয়ারের উদাহরণ -->
-  <div style="margin-bottom: 20px;">
-    <h3>🎥 YouTube Video:</h3>
-    <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-  </div>
-
-  <div style="margin-bottom: 20px;">
-    <h3>🎥 Facebook Video:</h3>
-    <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/YOUR_PAGE/videos/YOUR_VIDEO_ID/" width="100%" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen></iframe>
-  </div>
-
-  <div style="margin-bottom: 20px;">
-    <h3>🎮 Play My Game:</h3>
-    <iframe src="https://yourgameurl.com" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
-  </div>
-
-  <!-- গুগল অ্যাডসেন্স অংশ -->
-  <div style="margin-top: 30px;">
-    <h3>💸 Google Ads</h3>
-    <!-- AdSense কোড বসাও এখানে -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-         data-ad-slot="1234567890"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-</section>
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-  <meta charset="UTF-8">
-  <title>আমার ভিডিও</title>
-</head>
-<body style="font-family: sans-serif; padding: 20px; background-color: #f5f5f5;">
-  <h1>📺 আমার ভিডিও</h1>
-
-  <!-- 🟥 YouTube নিজের ভিডিও -->
-  <h2>🎥 আমার YouTube ভিডিও</h2>
-  <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-    frameborder="0" allowfullscreen></iframe>
-
-  <!-- 🟦 Facebook নিজের ভিডিও -->
-  <h2>📘 আমার Facebook ভিডিও</h2>
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" 
-    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
-  <div class="fb-video" data-href="https://www.facebook.com/YOUR_USERNAME/videos/YOUR_VIDEO_ID/"
-    data-width="500" data-show-text="false"></div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-  <meta charset="UTF-8">
-  <title>🎬 ভিডিও ও ইনকাম</title>
-</head>
-<body style="font-family: sans-serif; padding: 20px; background-color: #eef2f7;">
-
-  <h1>🎬 অন্যান্য ভিডিও, গেম, চ্যাটবট এবং ইনকাম</h1>
-
-  <!-- ✅ অন্যের YouTube ভিডিও -->
-  <h2>📺 YouTube</h2>
-  <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-    frameborder="0" allowfullscreen></iframe>
-
-  <!-- ✅ অন্যের Facebook ভিডিও -->
-  <h2>📘 Facebook</h2>
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" 
-    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
-  <div class="fb-video" 
-       data-href="https://www.facebook.com/facebook/videos/10153231379946729/" 
-       data-width="500" data-show-text="false"></div>
-
-  <!-- 🎮 HTML5 Game -->
-  <h2>🎮 ফ্রি গেম</h2>
-  <iframe src="https://games.cdn.famobi.com/html5games/t/tower-crash-3d/v200/?fg_domain=play.famobi.com"
-    width="100%" height="500" style="border:none;" allowfullscreen></iframe>
-
-  <!-- 🤖 Chatbase Bot -->
-  <h2>🤖 সাহায্য দরকার?</h2>
-  <script src="https://www.chatbase.co/embed.min.js"
-    chatbotId="YOUR-CHATBOT-ID" domain="yourdomain.com" defer></script>
-
-  <!-- 💰 Google AdSense -->
-  <h2>💰 ইনকাম (Google Ads)</h2>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    crossorigin="anonymous"></script>
-  <ins class="adsbygoogle"
-       style="display:block; text-align:center;"
-       data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
-       data-ad-slot="1234567890"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
+    // accessibility: allow deep linking by hash
+    const hash = location.hash.replace('#','');
+    if(hash){
+      const link = Array.from(menuLinks).find(l=>l.dataset.id===hash);
+      if(link){ link.click(); }
+    }
   </script>
-
 </body>
-</html>
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-  <meta charset="UTF-8">
-  <title>🎬 ভিডিও ও ইনকাম</title>
-</head>
-<body style="font-family: sans-serif; padding: 20px; background-color: #eef2f7;">
-
-  <h1>🎬 অন্যান্য ভিডিও, গেম, চ্যাটবট এবং ইনকাম</h1>
-
-  <!-- ✅ অন্যের YouTube ভিডিও -->
-  <h2>📺 YouTube</h2>
-  <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-    frameborder="0" allowfullscreen></iframe>
-
-  <!-- ✅ অন্যের Facebook ভিডিও -->
-  <h2>📘 Facebook</h2>
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" 
-    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
-  <div class="fb-video" 
-       data-href="https://www.facebook.com/facebook/videos/10153231379946729/" 
-       data-width="500" data-show-text="false"></div>
-
-  <!-- 🎮 HTML5 Game -->
-  <h2>🎮 ফ্রি গেম</h2>
-  <iframe src="https://games.cdn.famobi.com/html5games/t/tower-crash-3d/v200/?fg_domain=play.famobi.com"
-    width="100%" height="500" style="border:none;" allowfullscreen></iframe>
-
-  <!-- 🤖 Chatbase Bot -->
-  <h2>🤖 সাহায্য দরকার?</h2>
-  <script src="https://www.chatbase.co/embed.min.js"
-    chatbotId="YOUR-CHATBOT-ID" domain="yourdomain.com" defer></script>
-
-  <!-- 💰 Google AdSense -->
-  <h2>💰 ইনকাম (Google Ads)</h2>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    crossorigin="anonymous"></script>
-  <ins class="adsbygoogle"
-       style="display:block; text-align:center;"
-       data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
-       data-ad-slot="1234567890"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NaymVerse Pro Dashboard</title>
-<style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins", sans-serif; }
-
-  body {
-    display:flex;
-    min-height:100vh;
-    background:#f5f6fa;
-    color:#222;
-    transition:0.4s;
-  }
-
-  /* DARK MODE */
-  body.dark { background:#1e1e1e; color:#eee; }
-
-  /* Sidebar */
-  .sidebar {
-    width:250px;
-    background:#111;
-    color:#fff;
-    position:fixed;
-    top:0; left:-250px;
-    height:100vh;
-    padding-top:60px;
-    transition:0.4s;
-    z-index:10;
-  }
-  .sidebar.active { left:0; }
-  .sidebar ul { list-style:none; }
-  .sidebar ul li { border-bottom:1px solid #222; }
-  .sidebar ul li a {
-    display:block;
-    padding:14px 25px;
-    text-decoration:none;
-    color:#fff;
-    transition:0.3s;
-  }
-  .sidebar ul li a:hover { background:#333; }
-
-  #menu-btn {
-    position:fixed;
-    top:20px; left:20px;
-    background:#111;
-    color:#fff;
-    font-size:26px;
-    padding:8px 12px;
-    border-radius:5px;
-    cursor:pointer;
-    z-index:1000;
-  }
-
-  .content {
-    flex:1;
-    padding:60px 30px;
-    margin-left:0;
-    transition:0.4s;
-  }
-  .sidebar.active ~ .content { margin-left:250px; }
-
-  section {
-    display:none;
-    max-width:800px;
-    background:#fff;
-    padding:25px;
-    border-radius:10px;
-    margin-bottom:30px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-  }
-  body.dark section { background:#2b2b2b; }
-
-  section.active { display:block; }
-
-  /* Toggle Mode Button */
-  #toggleMode {
-    position:fixed;
-    top:20px; right:20px;
-    background:#111;
-    color:#fff;
-    padding:8px 14px;
-    border-radius:5px;
-    cursor:pointer;
-    z-index:1000;
-  }
-  #toggleMode:hover { background:#333; }
-
-  /* About */
-  .about p { line-height:1.6; }
-
-  /* Income */
-  .income-box {
-    text-align:center;
-    font-size:20px;
-    background:#007bff;
-    color:#fff;
-    padding:15px;
-    border-radius:8px;
-    margin-bottom:20px;
-  }
-
-  /* Video Downloader */
-  input, textarea, select {
-    width:100%;
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:6px;
-    margin-bottom:10px;
-  }
-
-  button {
-    padding:10px 15px;
-    background:#111;
-    color:#fff;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-  }
-  button:hover { background:#333; }
-
-  /* Ads */
-  .ads-banner {
-    background:#28a745;
-    color:#fff;
-    padding:15px;
-    border-radius:8px;
-    text-align:center;
-    cursor:pointer;
-  }
-
-  /* Image Upload */
-  .img-preview {
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-  }
-  .img-preview img {
-    width:150px;
-    height:150px;
-    object-fit:cover;
-    border-radius:10px;
-  }
-
-  /* Apps */
-  .app-card {
-    background:#f0f0f0;
-    padding:15px;
-    border-radius:8px;
-    margin-bottom:10px;
-  }
-  body.dark .app-card { background:#3b3b3b; }
-</style>
-</head>
-<body>
-<div id="menu-btn">&#9776;</div>
-<div id="toggleMode">🌙 Dark</div>
-
-<div class="sidebar" id="sidebar">
-  <ul>
-    <li><a href="#home">🏠 Home</a></li>
-    <li><a href="#about">ℹ️ About</a></li>
-    <li><a href="#income">💰 Income</a></li>
-    <li><a href="#ads">📢 Ads</a></li>
-    <li><a href="#video">🎬 Video Downloader</a></li>
-    <li><a href="#image">🖼️ Image Upload</a></li>
-    <li><a href="#rating">⭐ Rating</a></li>
-    <li><a href="#apps">📱 Apps</a></li>
-  </ul>
-</div>
-
-<div class="content">
-  <section id="home" class="active">
-    <h1>Welcome to NaymVerse Pro Dashboard</h1>
-    <p>All-in-one platform for income, ads, media, and apps management.</p>
-  </section>
-
-  <section id="about" class="about">
-    <h2>About NaymVerse</h2>
-    <p>NaymVerse is your creative digital world — where you can learn, earn, upload, and share. This dashboard brings everything together in one simple, beautiful place.</p>
-  </section>
-
-  <section id="income">
-    <h2>💰 Income Summary</h2>
-    <div class="income-box">Today’s Income: ৳ <span id="incomeAmount">0</span></div>
-    <button onclick="addIncome(10)">Watch Ad (+৳10)</button>
-    <button onclick="addIncome(50)">Upload File (+৳50)</button>
-    <button onclick="addIncome(100)">Download Video (+৳100)</button>
-  </section>
-
-  <section id="ads">
-    <h2>Sponsored Ads</h2>
-    <div class="ads-banner" onclick="addIncome(20)">Click Ad & Earn ৳20</div>
-  </section>
-
-  <section id="video">
-    <h2>🎬 Video Downloader</h2>
-    <input type="text" id="videoLink" placeholder="Enter YouTube / Video Link..." />
-    <button onclick="alert('Demo Only: Download system coming soon!')">Download</button>
-  </section>
-
-  <section id="image">
-    <h2>🖼️ Upload Images</h2>
-    <input type="file" id="imgInput" multiple accept="image/*" />
-    <div class="img-preview" id="imgPreview"></div>
-  </section>
-
-  <section id="rating">
-    <h2>⭐ Google Rating Blog</h2>
-    <div id="stars">
-      <span data-value="1">★</span>
-      <span data-value="2">★</span>
-      <span data-value="3">★</span>
-      <span data-value="4">★</span>
-      <span data-value="5">★</span>
-    </div>
-    <textarea id="reviewText" placeholder="Write your feedback..."></textarea>
-    <button onclick="submitReview()">Submit Review</button>
-    <div id="reviewsList"></div>
-  </section>
-
-  <section id="apps">
-    <h2>📱 App Store</h2>
-    <div class="app-card">
-      <h3>Naym Tools</h3>
-      <p>All-in-one Android app for your tools and utilities.</p>
-      <button onclick="window.open('https://nayembepary.github.io/NaymVerse/app.apk','_blank')">Download App</button>
-    </div>
-  </section>
-</div>
-
-<script>
-const sidebar=document.getElementById('sidebar');
-const menuBtn=document.getElementById('menu-btn');
-const toggleMode=document.getElementById('toggleMode');
-const sections=document.querySelectorAll('section');
-
-menuBtn.onclick=()=>sidebar.classList.toggle('active');
-document.querySelectorAll('.sidebar a').forEach(a=>{
-  a.onclick=e=>{
-    e.preventDefault();
-    const id=a.getAttribute('href').substring(1);
-    sections.forEach(s=>s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    sidebar.classList.remove('active');
-  };
-});
-
-toggleMode.onclick=()=>{
-  document.body.classList.toggle('dark');
-  toggleMode.textContent=document.body.classList.contains('dark')?'☀️ Light':'🌙 Dark';
-};
-
-let income=0;
-function addIncome(amount){
-  income+=amount;
-  document.getElementById('incomeAmount').textContent=income;
-  alert('Income Added +৳'+amount);
-}
-
-document.getElementById('imgInput').addEventListener('change',function(){
-  const preview=document.getElementById('imgPreview');
-  preview.innerHTML='';
-  for(let file of this.files){
-    const img=document.createElement('img');
-    img.src=URL.createObjectURL(file);
-    preview.appendChild(img);
-  }
-});
-
-const stars=document.querySelectorAll('#stars span');
-let rating=0;
-stars.forEach(star=>{
-  star.onclick=()=>{
-    rating=star.dataset.value;
-    stars.forEach(s=>s.style.color="#ccc");
-    for(let i=0;i<rating;i++) stars[i].style.color="#f1c40f";
-  };
-});
-
-function submitReview(){
-  const text=document.getElementById('reviewText').value;
-  if(!rating||!text){ alert("Please give rating and feedback!"); return; }
-  const div=document.createElement('div');
-  div.innerHTML=`<p>⭐${'★'.repeat(rating)}<br>${text}</p>`;
-  document.getElementById('reviewsList').appendChild(div);
-  document.getElementById('reviewText').value='';
-  stars.forEach(s=>s.style.color="#ccc");
-  rating=0;
-}
-</script>
-</body>
+  <nav class="menu" id="menu">
+  <a href="#home" data-id="home" class="active">🏠 Home</a>
+  <a href="#about" data-id="about">ℹ️ About</a>
+  <a href="#income" data-id="income">💰 Income</a>
+  <a href="#ads" data-id="ads">📢 Ads</a>
+  <a href="#video" data-id="video">🎬 Video Downloader</a>
+  <a href="#image" data-id="image">🖼️ Images</a>
+  <a href="#rating" data-id="rating">⭐ Rating</a>
+  <a href="#apps" data-id="apps">📱 Apps</a>
+  <a href="#payment" data-id="payment">💳 Payment</a>
+  <a href="https://www.facebook.com/share/17KbmYwJ2o/" target="_blank">📘 Facebook</a>
+  <a href="https://www.instagram.com/beparynaym?igsh=eWcxMDE5enBwMGtp" target="_blank">📸 Instagram</a>
+  <a href="https://www.youtube.com/@COMEDYJHALOK" target="_blank">📺 YouTube</a>
+</nav>
 </html>
